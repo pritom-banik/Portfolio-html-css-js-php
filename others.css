@@ -1,0 +1,345 @@
+
+body {
+  background: rgb(39, 36, 36);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  color: white;
+}
+
+/* Layout */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2.5rem;
+  min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+  .main {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* Sidebar */
+.intro {
+  display: none;
+  background: black;
+  border: 1px solid #d1d5db;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  width: 80vw;
+  padding: 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .intro {
+    display: block;
+    width: 25vw;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+.profile-pic {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.name {
+  font-weight: bold;
+  border-bottom: 3px solid white;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.name .title {
+  font-size: 1.875rem;
+}
+
+.name .subtitle  {
+  font-size: 1.25rem;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.btn-cv {
+  background: #3b82f6;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.CVdownload:hover {
+  background: #2563eb;
+}
+
+/* Social Media */
+.socialMedia {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 3px solid white;
+}
+
+.social-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(255,255,255,0.2);
+}
+
+/* Main Content */
+.all {
+  width: 80vw;
+}
+
+@media (min-width: 1024px) {
+  .all {
+    width: 50vw;
+    margin-left: 2.5rem;
+  }
+}
+
+/* Top Nav */
+.navigationBar {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .navigationBar {
+    display: flex;
+    background: black;
+    border: 1px solid #374151;
+    border-radius: 10px;
+    font-weight: 800;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+  }
+}
+.nav-item {
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem;
+  font-size: 1.25rem;
+  color: #d1d5db;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-bottom: 4px solid transparent;
+}
+.nav-item:hover {
+  color: white;
+  border-color: white;
+}
+.nav-item.active {
+  background: #6b7280;
+  color: black;
+  border-radius: 10px;
+}
+
+/* Bottom Navigation (Mobile) */
+.bottom-navigationBar {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: black;
+  border-top: 1px solid #374151;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.5);
+  justify-content: space-around;
+  align-items: center;
+  z-index: 50;
+}
+
+@media (min-width: 1024px) {
+  .bottom-navigationBar {
+    display: none;
+  }
+}
+
+.b-nav-item {
+  flex: 1;
+  text-align: center;
+  color: #d1d5db;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: color 0.3s, border 0.3s;
+}
+
+.b-nav-item:hover {
+  color: white;
+}
+
+.b-nav-item.active {
+  background: #6b7280;
+  color: black;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-bottom: 0.25rem;
+  fill: currentColor;
+}
+
+/* Others Section */
+.resume {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.section-header {
+  background: black;
+  color: white;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.section-content {
+  background: black;
+  border: 1px solid #374151;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 15px;
+  transition: all 0.5s ease-in-out;
+}
+
+
+
+
+.post {
+  background-color: black;          
+  border: 1px solid white;          
+  border-radius: 0.5rem;            
+  padding: 1rem;                    
+}
+
+.image {
+  width: 100%;                      /* w-full */
+  border-radius: 0.5rem;            /* rounded-lg (8px) */
+  margin: 1rem 0;                   /* my-4 (16px top/bottom) */
+}
+
+.heading {
+  color: white;                     /* text-white */
+  font-size: 1.25rem;               /* text-xl */
+  font-weight: bold;                /* font-bold */
+  margin-bottom: 0.5rem;            /* mb-2 (8px) */
+}
+
+.description {
+  color: #d1d5db;                   /* text-gray-300 */
+  font-size: 1rem;                  /* text-base (16px) */
+  margin-bottom: 1rem;              /* mb-4 (16px) */
+}
+
+.duration {
+  color: white;                     /* text-white */
+  font-size: 1.125rem;              /* text-lg (18px) */
+  font-weight: 600;                 /* font-semibold */
+  margin-bottom: 0.5rem;            /* mb-2 (8px) */
+}
+
+
+
+.contact-form {
+  background-color: #000;       
+  border: 2px solid white;      
+  border-radius: 1rem;          
+  padding: 1.5rem;              
+  max-width: 600px;             
+  margin: 1rem auto;            
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5); 
+}
+
+
+.form-title {
+  color: white;
+  font-size: 2rem;     
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+/* Labels */
+.form-group label {
+  color: #d1d5db;   /* gray-300 */
+  font-size: 0.875rem; /* text-sm */
+  margin-bottom: 0.25rem;
+}
+
+/* Inputs and Textarea */
+.form-group input,
+.form-group textarea {
+  padding: 0.5rem;              /* p-2 */
+  border-radius: 0.5rem;        /* rounded-lg */
+  border: 1px solid #374151;    /* subtle gray border */
+  background-color: #1f2937;    /* gray-800 */
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Focus effect */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #3b82f6;        /* blue-500 */
+  box-shadow: 0 0 6px rgba(59,130,246,0.5);
+}
+
+/* Textarea resize */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Submit Button */
+.btn-submit {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #2563eb; /* blue-600 */
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/* Hover effect */
+.btn-submit:hover {
+  background-color: #3b82f6; /* blue-500 */
+}
