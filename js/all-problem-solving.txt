@@ -14,17 +14,24 @@
       <tbody class="text-white">
         <tr class="bg-gray-700">
           <td class="px-4 py-2 border border-gray-500">Codeforces</td>
-          <td class="px-4 py-2 border border-gray-500">Pritom123</td>
-          <td class="px-4 py-2 border border-gray-500">2000</td>
-          <td class="px-4 py-2 border border-gray-500">900+</td>
-          <td class="px-4 py-2 border border-gray-500">50+</td>
+          <td class="px-4 py-2 border border-gray-500">UnpolishedNoob</td>
+          <td class="px-4 py-2 border border-gray-500">1202</td>
+          <td class="px-4 py-2 border border-gray-500">250+</td>
+          <td class="px-4 py-2 border border-gray-500">25+</td>
         </tr>
         <tr class="bg-gray-800">
           <td class="px-4 py-2 border border-gray-500">CodeChef</td>
-          <td class="px-4 py-2 border border-gray-500">Pritom123</td>
+          <td class="px-4 py-2 border border-gray-500">UnpolishedNoob</td>
           <td class="px-4 py-2 border border-gray-500">1800</td>
           <td class="px-4 py-2 border border-gray-500">300+</td>
-          <td class="px-4 py-2 border border-gray-500">15+</td>
+          <td class="px-4 py-2 border border-gray-500">12+</td>
+        </tr>
+        <tr class="bg-gray-800">
+          <td class="px-4 py-2 border border-gray-500">LeetCode</td>
+          <td class="px-4 py-2 border border-gray-500">UnpolishedNoob</td>
+          <td class="px-4 py-2 border border-gray-500">-</td>
+          <td class="px-4 py-2 border border-gray-500">230+</td>
+          <td class="px-4 py-2 border border-gray-500">4</td>
         </tr>
       </tbody>
     </table>

@@ -1,3 +1,85 @@
+<?php
+session_start();
+
+$username = "Portfolio-owner";
+$password = "2021";
+$connection = mysqli_connect("localhost", $username, $password, "pritom_portfolio");
+
+// HANDLE ALL POST PROCESSING FIRST - BEFORE ANY HTML OUTPUT
+
+// Handle delete action
+if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
+    $table = $_POST['table'];
+    $id = $_POST['id'];
+    $query = "DELETE FROM `$table` WHERE id = $id";
+    
+    if (mysqli_query($connection, $query)) {
+        $_SESSION['message'] = [
+            'type' => 'success',
+            'text' => "Row with ID $id deleted successfully from $table"
+        ];
+    } else {
+        $_SESSION['message'] = [
+            'type' => 'error',
+            'text' => "Error: " . mysqli_error($connection)
+        ];
+    }
+    
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+
+// Handle create action
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['action'] === "create") {
+    $table = $_POST['table'];
+
+    if (!empty($table)) {
+        $result = mysqli_query($connection, "SHOW COLUMNS FROM `$table`");
+        $columns = [];
+        $values = [];
+
+        while ($col = mysqli_fetch_assoc($result)) {
+            $colName = $col['Field'];
+            if ($colName === "id")
+                continue;
+
+            if ($colName === "image") {
+                if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+                    $imageData = file_get_contents($_FILES['image']['tmp_name']);
+                    $imageData = mysqli_real_escape_string($connection, $imageData);
+                    $columns[] = "`$colName`";
+                    $values[] = "'$imageData'";
+                }
+            } else {
+                if (isset($_POST[$colName])) {
+                    $val = mysqli_real_escape_string($connection, $_POST[$colName]);
+                    $columns[] = "`$colName`";
+                    $values[] = "'$val'";
+                }
+            }
+        }
+
+        if (!empty($columns)) {
+            $sql = "INSERT INTO `$table` (" . implode(",", $columns) . ") VALUES (" . implode(",", $values) . ")";
+            
+            if (mysqli_query($connection, $sql)) {
+                $_SESSION['message'] = [
+                    'type' => 'success',
+                    'text' => "New row added successfully in $table"
+                ];
+            } else {
+                $_SESSION['message'] = [
+                    'type' => 'error',
+                    'text' => "Error: " . mysqli_error($connection)
+                ];
+            }
+            
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,15 +93,20 @@
 <body class="bg-[rgb(36,36,36)] flex flex-col items-center justify-center text-white font-xl mb-4">
 
     <div class="response flex flex-col items-center mt-6 w-full max-w-4xl px-4">
+        
         <?php
-        $username = "Portfolio-owner";
-        $password = "2021";
-        $connection = mysqli_connect("localhost", $username, $password, "pritom_portfolio");
-
+        // Display session messages if they exist
+        if (isset($_SESSION['message'])) {
+            $type = $_SESSION['message']['type'] === 'success' ? 'text-green-500' : 'text-red-500';
+            $icon = $_SESSION['message']['type'] === 'success' ? '✅' : '❌';
+            echo "<div class='w-full mb-4'>";
+            echo "<p class='$type mt-4 text-center'>$icon " . $_SESSION['message']['text'] . "</p>";
+            echo "</div>";
+            unset($_SESSION['message']);
+        }
 
         // Step 1: Get all table names
         $tables = mysqli_query($connection, "SHOW TABLES FROM pritom_portfolio");
-
 
         while ($tableRow = mysqli_fetch_array($tables)) {
             $tableName = $tableRow[0];
@@ -33,7 +120,6 @@
 
                 <div class='overflow-x-auto'>
                     <table class='min-w-full text-sm text-left border border-gray-700 rounded-lg'>
-
 
                         <thead class='bg-gray-800'>
                             <tr>
@@ -87,7 +173,6 @@
                 </div>
             </div>
 
-
             <!-- Add Row Form -->
             <h4 class='text-lg font-bold mt-6 mb-4 text-white'>Add new row to <?php echo $tableName ?></h4>
             <form method='POST' enctype="multipart/form-data" class='add flex gap-3 flex-wrap'>
@@ -117,85 +202,25 @@
                 <input type='hidden' name='table' value='<?php echo $tableName ?>'>
                 <input type='hidden' name='action' value='create'>
 
-                <button type='submit'
-                    class='bg-indigo-600 hover:bg-indigo-700 px-4 py-1 rounded-lg text-white font-semibold cursor-pointer'>
-                    Create
-                </button>
             </form>
+
 
             <?php
         }
-
         ?>
-
-        <?php
-        // Handle delete action
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
-            $table = $_POST['table'];
-            $id = $_POST['id'];
-            $query = "DELETE FROM `$table` WHERE id = $id";
-            if (mysqli_query($connection, $query)) {
-                echo "<p class='text-green-500 mt-4'>From $table Row with ID $id deleted successfully from <b>$table</b></p>";
-                header("Location: " . $_SERVER['PHP_SELF']);
-                exit();
-            } else {
-                echo "<p class='text-red-500 mt-4'>❌ Error: " . mysqli_error($connection) . "</p>";
-            }
-        }
-        ?>
-
-
-
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['action'] === "create") {
-            $table = $_POST['table'];
-
-            // ✅ Only run insert for this table
-            if (!empty($table)) {
-                // Fetch columns for the submitted table
-                $result = mysqli_query($connection, "SHOW COLUMNS FROM `$table`");
-                $columns = [];
-                $values = [];
-
-                while ($col = mysqli_fetch_assoc($result)) {
-                    $colName = $col['Field'];
-                    if ($colName === "id")
-                        continue; // Skip auto id
-        
-                    if ($colName === "image") {
-                        // Handle image upload
-                        if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
-                            $imageData = file_get_contents($_FILES['image']['tmp_name']);
-                            $imageData = mysqli_real_escape_string($connection, $imageData);
-                            $columns[] = "`$colName`";
-                            $values[] = "'$imageData'";
-                        }
-                    } else {
-                        if (isset($_POST[$colName])) {
-                            $val = mysqli_real_escape_string($connection, $_POST[$colName]);
-                            $columns[] = "`$colName`";
-                            $values[] = "'$val'";
-                        }
-                    }
-                }
-
-                if (!empty($columns)) {
-                    $sql = "INSERT INTO `$table` (" . implode(",", $columns) . ") VALUES (" . implode(",", $values) . ")";
-                    if (mysqli_query($connection, $sql)) {
-                        echo "<p class='text-green-500 mt-4'>✅ New row added successfully in <b>$table</b></p>";
-                        header("Location: " . $_SERVER['PHP_SELF']);
-                        exit();
-                    } else {
-                        echo "<p class='text-red-500 mt-4'>❌ Error: " . mysqli_error($connection) . "</p>";
-                    }
-                }
-            }
-        }
-        ?>
-
-
 
     </div>
+
+     <button id="myButton" class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition cursor-pointer">
+    Logout
+  </button>
+  <script>
+    button=document.getElementById("myButton");
+    button.addEventListener('click',()=>{
+        window.location.href = "loginform.php";
+    });
+  </script>
+
 </body>
 
 </html>

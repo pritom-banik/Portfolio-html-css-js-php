@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
- fetchDate();
+fetchDate();
 });
 
 //=======================================================
@@ -58,37 +58,26 @@ function renderPosts(containerId, posts, extension) {
 //===========================================
 
 const files = [
-  ["txt", "js/all-coding-skill.txt", "all-coding-skill"],
-  ["txt", "js/all-github-repo.txt", "all-github-repo"],
-  ["txt", "js/all-interest.txt", "all-interest"],
-  ["txt", "js/all-problem-solving.txt", "all-problem-solving"],
-  ["txt", "js/all-skill.txt", "all-skill"],
+  ["js/all-coding-skill.txt", "all-coding-skill"],
+  ["js/all-github-repo.txt", "all-github-repo"],
+  ["js/all-interest.txt", "all-interest"],
+  ["js/all-problem-solving.txt", "all-problem-solving"],
+  ["js/all-skill.txt", "all-skill"],
 ];
 
 const fetchDate = () => {
   files
     .forEach((file) => {
-      if (file[0] === "json") {
-        fetch(file[1])
-          .then((res) => {
-            if (!res.ok) {
-              throw new Error("Network response was not ok for " + file[2]);
-            }
-            return res.json();
-          })
-          .then((data) => renderPosts(file[2], data, "json"))
-          .catch((err) => console.error("Error fetching data:", err));
-      } else {
-        fetch(file[1])
+        fetch(file[0])
           .then((res) => {
             if (!res.ok) {
               throw new Error("Network response was not ok for " + file[2]);
             }
             return res.text();
           })
-          .then((data) => renderPosts(file[2], data, "txt"))
+          .then((data) => renderPosts(file[1], data, "txt"))
           .catch((err) => console.error("Error fetching data:", err));
-      }
+      
     })
 };
 //===========================================

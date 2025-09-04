@@ -1,3 +1,24 @@
+<?php
+    if(isset($_COOKIE["loggedin"])){
+        header("Location: settings.php");
+            exit();
+    }
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $password = $_POST["pass"];
+
+        if ($username == "admin" && $password == "1234") {
+            setcookie("loggedin","yes",time()+600);
+            header("Location: settings.php");
+            exit();
+        } else {
+            echo "<br>";
+            echo "<div class='text-red-500 font-semibold mt-4'>❌ Try again</div>";
+        }
+    }
+    ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,21 +56,6 @@
             </button>
         </form>
     </div>
-
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $username = $_POST["username"];
-        $password = $_POST["pass"];
-
-        if ($username == "admin" && $password == "1234") {
-            header("Location: settings.php");
-            exit();
-        } else {
-            echo "<br>";
-            echo "<div class='text-red-500 font-semibold mt-4'>❌ Try again</div>";
-        }
-    }
-    ?>
 
 </body>
 

@@ -23,13 +23,11 @@
       </div>
       <div class="about">
         <p class="details">
-          Hi, I am Pritom Banik. Currently pursuing my bachelors in Computer
-          Science and Engineering at Khulna University of Engineering &
-          Technology. I am interested in Machine Learning, Deep Learning, Web
-          development, Quantum Computing and more. I am a tech enthusiast and
-          love to explore new technologies. I am always eager to learn and
-          improve my skills. I am currently working on several projects
-          related to web development and machine learning.
+          Hi, I’m Pritom Banik.
+          I’m pursuing a Bachelor’s degree in Computer Science and Engineering at Khulna University of Engineering &
+          Technology. My interests span Machine Learning, Deep Learning, Web Development, and Quantum Computing. As a
+          passionate tech enthusiast, I’m always eager to explore emerging technologies, sharpen my skills, and take on
+          new challenges that push me to grow.
         </p>
         <a href="https://drive.google.com/uc?export=download&id=1AWEB9HugiGkrWIW1K5QXtcRvQ9g88qum"
           download="CV_Pritom_Banik.pdf">
@@ -127,7 +125,7 @@
       <!-- Resume Sections -->
       <div class="resume">
 
-      
+
         <!-- Work -->
         <div class="section">
           <div class="section-header" onclick="toggleWork('all-work','arrow-icon-work')">
