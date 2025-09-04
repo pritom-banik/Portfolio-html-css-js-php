@@ -5,9 +5,8 @@ $username = "Portfolio-owner";
 $password = "2021";
 $connection = mysqli_connect("localhost", $username, $password, "pritom_portfolio");
 
-// HANDLE ALL POST PROCESSING FIRST - BEFORE ANY HTML OUTPUT
 
-// Handle delete action
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
     $table = $_POST['table'];
     $id = $_POST['id'];
@@ -29,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
     exit();
 }
 
-// Handle create action
+
 if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['action'] === "create") {
     $table = $_POST['table'];
 
@@ -95,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
     <div class="response flex flex-col items-center mt-6 w-full max-w-4xl px-4">
         
         <?php
-        // Display session messages if they exist
+        
         if (isset($_SESSION['message'])) {
             $type = $_SESSION['message']['type'] === 'success' ? 'text-green-500' : 'text-red-500';
             $icon = $_SESSION['message']['type'] === 'success' ? '✅' : '❌';
@@ -105,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
             unset($_SESSION['message']);
         }
 
-        // Step 1: Get all table names
+        
         $tables = mysqli_query($connection, "SHOW TABLES FROM pritom_portfolio");
 
         while ($tableRow = mysqli_fetch_array($tables)) {

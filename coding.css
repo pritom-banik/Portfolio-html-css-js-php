@@ -6,7 +6,7 @@ body {
   color: white;
 }
 
-/* Layout */
+
 .main {
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ body {
   }
 }
 
-/* Sidebar */
+
 .intro {
   display: none;
   background: black;
@@ -81,7 +81,7 @@ body {
   background: #2563eb;
 }
 
-/* Social Media */
+
 .socialMedia {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -103,7 +103,7 @@ body {
   box-shadow: 0 2px 6px rgba(255,255,255,0.2);
 }
 
-/* Main Content */
+
 .all {
   width: 80vw;
 }
@@ -115,7 +115,7 @@ body {
   }
 }
 
-/* Top Nav */
+
 .navigationBar {
   display: none;
 }
@@ -154,7 +154,7 @@ body {
   border-radius: 10px;
 }
 
-/* Bottom Navigation (Mobile) */
+
 .bottom-navigationBar {
   display: flex;
   position: fixed;
@@ -205,7 +205,7 @@ body {
 }
 
 
-/* Coding Section */
+
 .full {
   display: flex;
   flex-direction: column;

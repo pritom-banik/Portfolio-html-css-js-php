@@ -14,7 +14,7 @@
 
 <body>
   <div class="main">
-    <!-- Sidebar -->
+    <!-- ////////////////////////////Sidebar ////////////////////-->
     <div class="intro">
       <img src="images/Pritom_Banik_CSE2.jpg" alt="Profile Picture" class="profile-pic" />
       <div class="name">
@@ -52,7 +52,7 @@
 
     <!-- Main -->
     <div class="all">
-      <!-- Top Nav (desktop) -->
+      <!-- Top Nav /////////////////////////// -->
       <div id="topNavBar" class="navigationBar">
         <a href="home.php" class="nav-item">Home</a>
         <a href="resume.php" class="nav-item">Resume</a>
@@ -165,25 +165,20 @@
           <h2 class="form-title">Contact Me</h2>
 
           <form method="POST">
-            <!-- Name -->
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" placeholder="Enter your name" required>
             </div>
 
-            <!-- Email -->
             <div class="form-group">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" placeholder="Enter your email" required>
             </div>
-
-            <!-- Message -->
             <div class="form-group">
               <label for="message">Message</label>
               <textarea id="message" name="message" rows="4" placeholder="Your thoughts..." required></textarea>
             </div>
 
-            <!-- Submit Button -->
             <button type="submit" class="btn-submit">Send</button>
           </form>
         </div>

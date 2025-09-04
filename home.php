@@ -60,9 +60,9 @@
       </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Content !!!!!!!!!!!!!!!! -->
     <div class="all">
-      <!-- Top Navigation (Desktop) -->
+      <!-- Top Navigation -->
       <div id="topNavBar" class="navigationBar">
         <a href="home.php" class="nav-item active">Home</a>
         <a href="resume.php" class="nav-item">Resume</a>

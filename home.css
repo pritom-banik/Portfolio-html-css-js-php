@@ -21,7 +21,7 @@ body {
   }
 }
 
-/* Sidebar */
+
 .intro {
   background: black;
   border: 1px solid #d1d5db;
@@ -80,7 +80,7 @@ body {
   background: #2563eb;
 }
 
-/* Social Media */
+
 .socialMedia {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -102,7 +102,7 @@ body {
   box-shadow: 0 2px 6px rgba(255,255,255,0.2);
 }
 
-/* Main Content */
+
 .all {
   width: 80vw;
 }
@@ -114,7 +114,7 @@ body {
   }
 }
 
-/* Navigation Bar (Desktop) */
+
 .navigationBar {
   display: none;
 }
@@ -156,7 +156,6 @@ body {
   border-radius: 10px;
 }
 
-/* Bottom Navigation (Mobile) */
 .bottom-navigationBar {
   display: flex;
   position: fixed;
@@ -206,7 +205,7 @@ body {
   fill: currentColor;
 }
 
-/* Projects */
+
 .home {
   display: grid;
   grid-template-columns: 1fr;
@@ -218,7 +217,7 @@ body {
 .post {
   background-color: black;
   width: 100%;
-  border: 1px solid #d1d5db; /* gray-300 */
+  border: 1px solid #d1d5db; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   padding: 8px 0;
   border-radius: 10px;
@@ -232,7 +231,7 @@ body {
 
 .date {
   color: white;
-  font-size: 1.875rem; /* text-3xl */
+  font-size: 1.875rem; 
   font-weight: bold;
   padding: 10px;
 }
@@ -247,14 +246,14 @@ body {
 
 .heading {
   color: white;
-  font-size: 1.5rem; /* text-2xl */
+  font-size: 1.5rem; 
   font-weight: bold;
   padding: 10px;
 }
 
 .description {
   color: white;
-  font-size: 1.125rem; /* text-lg */
+  font-size: 1.125rem; 
   padding: 10px;
 }
 
@@ -276,7 +275,7 @@ body {
 }
 
 .link i:hover {
-  color: #60a5fa; /* blue-400 */
+  color: #60a5fa; 
 }
 
 .divider {

@@ -5,11 +5,11 @@ window.addEventListener("scroll", () => {
   const currentScrollY = window.scrollY;
 
   if (currentScrollY > lastScrollY) {
-    // Scrolling down → hide navbar
+    
     navbar.style.transform = "translateY(-200%)";
     navbar.style.transition = "transform 0.3s ease";
   } else {
-    // Scrolling up → show navbar
+    
     navbar.style.transform = "translateY(0)";
     navbar.style.transition = "transform 0.3s ease";
   }

@@ -52,7 +52,7 @@
 
     <!-- Main -->
     <div class="all">
-      <!-- Top Nav (desktop) -->
+      <!-- Top Nav  -->
       <div id="topNavBar" class="navigationBar">
         <a href="home.php" class="nav-item">Home</a>
         <a href="resume.php" class="nav-item">Resume</a>

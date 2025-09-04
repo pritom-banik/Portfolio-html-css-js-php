@@ -6,7 +6,7 @@ body {
   color: white;
 }
 
-/* Layout */
+
 .main {
   display: flex;
   flex-direction: column;
@@ -22,7 +22,6 @@ body {
   }
 }
 
-/* Sidebar */
 .intro {
   display: none;
   background: black;
@@ -81,7 +80,6 @@ body {
   background: #2563eb;
 }
 
-/* Social Media */
 .socialMedia {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -103,7 +101,6 @@ body {
   box-shadow: 0 2px 6px rgba(255,255,255,0.2);
 }
 
-/* Main Content */
 .all {
   width: 80vw;
 }
@@ -115,7 +112,6 @@ body {
   }
 }
 
-/* Top Nav */
 .navigationBar {
   display: none;
 }
@@ -154,7 +150,6 @@ body {
   border-radius: 10px;
 }
 
-/* Bottom Navigation (Mobile) */
 .bottom-navigationBar {
   display: flex;
   position: fixed;
@@ -204,7 +199,6 @@ body {
   fill: currentColor;
 }
 
-/* Resume Section */
 .resume {
   display: flex;
   flex-direction: column;
@@ -235,35 +229,35 @@ body {
 
 
 .post {
-  background-color: black;          /* bg-black */
-  border: 1px solid white;          /* border border-white */
-  border-radius: 0.5rem;            /* rounded-lg (8px) */
+  background-color: black;          
+  border: 1px solid white;          
+  border-radius: 0.5rem;            
   padding: 1rem; 
-  margin-bottom: 10px;                   /* p-4 (16px) */
+  margin-bottom: 10px;                   
 }
 
 .image {
-  width: 100%;                      /* w-full */
-  border-radius: 0.5rem;            /* rounded-lg (8px) */
-  margin: 1rem 0;                   /* my-4 (16px top/bottom) */
+  width: 100%;                      
+  border-radius: 0.5rem;            
+  margin: 1rem 0;                   
 }
 
 .heading {
-  color: white;                     /* text-white */
-  font-size: 1.25rem;               /* text-xl */
-  font-weight: bold;                /* font-bold */
-  margin-bottom: 0.5rem;            /* mb-2 (8px) */
+  color: white;                     
+  font-size: 1.25rem;               
+  font-weight: bold;                
+  margin-bottom: 0.5rem;            
 }
 
 .description {
-  color: #d1d5db;                   /* text-gray-300 */
-  font-size: 1rem;                  /* text-base (16px) */
-  margin-bottom: 1rem;              /* mb-4 (16px) */
+  color: #d1d5db;                   
+  font-size: 1rem;                  
+  margin-bottom: 1rem;              
 }
 
 .duration {
-  color: white;                     /* text-white */
-  font-size: 1.125rem;              /* text-lg (18px) */
-  font-weight: 600;                 /* font-semibold */
-  margin-bottom: 0.5rem;            /* mb-2 (8px) */
+  color: white;                     
+  font-size: 1.125rem;              
+  font-weight: 600;                 
+  margin-bottom: 0.5rem;            
 }
