@@ -239,7 +239,7 @@ body {
   border: 1px solid white;          /* border border-white */
   border-radius: 0.5rem;            /* rounded-lg (8px) */
   padding: 1rem; 
-  margin-bottom: 40px;                   /* p-4 (16px) */
+  margin-bottom: 10px;                   /* p-4 (16px) */
 }
 
 .image {

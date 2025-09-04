@@ -3,7 +3,7 @@
   <a 
     href="https://www.github.com" 
     target="_blank"
-    class="repo-card flex flex-col items-center justify-center p-4 bg-gray-900 text-white rounded-lg shadow-lg hover:bg-gray-800 hover:scale-105 transition-transform duration-300 aspect-[1/1]"
+    class="repo-card"
   >
     <div class="repo-icon w-10 h-10 mb-2">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-full h-full fill-current">
@@ -17,7 +17,7 @@
   <a 
     href="https://www.dsa.com" 
     target="_blank"
-    class="repo-card flex flex-col items-center justify-center p-4 bg-gray-900 text-white rounded-lg shadow-lg hover:bg-gray-800 hover:scale-105 transition-transform duration-300 aspect-[1/1]"
+    class="repo-card"
   >
     <div class="repo-icon w-10 h-10 mb-2">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="w-full h-full fill-current">
@@ -26,4 +26,3 @@
     </div>
     <span class="repo-name text-lg font-semibold text-center">DSA Practice</span>
   </a>
-</div>

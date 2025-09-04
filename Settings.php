@@ -8,152 +8,191 @@
     <title>Pritom's Dashboard</title>
 </head>
 
-<body class="bg-[rgb(36,36,36)] flex flex-col items-center justify-center h-screen colors-white font-xl mb-4">
-
-
-    <div class="form bg-black text-white p-8 rounded-2xl shadow-lg w-96">
-        <h1 class="text-3xl font-bold mb-6 text-center underline">
-            Welcome to Pritom's Dashboard
-        </h1>
-        <form method="POST" action="Settings.php" class="space-y-5">
-            <!-- Username -->
-            <div>
-                <label for="username" class="block text-sm font-medium">Name</label>
-                <input type="text" id="username" name="username" required
-                    class="w-full mt-1 px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-            </div>
-            <!-- Password -->
-            <div>
-                <label for="pass" class="block text-sm font-medium">Password</label>
-                <input type="password" id="pass" name="pass" required
-                    class="w-full mt-1 px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-            </div>
-            <!-- Button -->
-            <button type="submit"
-                class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded-lg font-semibold transition duration-300">
-                Login
-            </button>
-        </form>
-    </div>
-
+<body class="bg-[rgb(36,36,36)] flex flex-col items-center justify-center text-white font-xl mb-4">
 
     <div class="response flex flex-col items-center mt-6 w-full max-w-4xl px-4">
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-            // $password = filter_input(INPUT_POST, "pass", FILTER_SANITIZE_STRING);
-        
-            $username = "Portfolio-owner";
-            $password = "2021";
-            $connection = mysqli_connect("localhost", $username, $password, "pritom_portfolio");
+        $username = "Portfolio-owner";
+        $password = "2021";
+        $connection = mysqli_connect("localhost", $username, $password, "pritom_portfolio");
 
-            if (mysqli_connect_errno()) {
-                echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                exit();
-            } else {
-                echo "<div class='bg-green-600 text-white px-6 py-3 rounded-lg shadow-md w-full text-center font-semibold'>
-                    ✅ Login Successful
-                  </div>";
 
-                // Step 1: Get all table names
-                $tables = mysqli_query($connection, "SHOW TABLES FROM pritom_portfolio");
+        // Step 1: Get all table names
+        $tables = mysqli_query($connection, "SHOW TABLES FROM pritom_portfolio");
 
-                while ($tableRow = mysqli_fetch_array($tables)) {
-                    $tableName = $tableRow[0];
-                    //echo $tableName;
-                    // echo "<br>";
-                    echo "<div class='bg-black text-white mt-8 w-full rounded-xl shadow-lg p-6'>";
-                    echo "<h3 class='text-xl font-bold mb-4 border-b border-gray-700 pb-2'>📌 Table: $tableName</h3>";
 
-                    $allData = mysqli_query($connection, "SELECT * FROM `$tableName`");
-                    echo "<div class='overflow-x-auto'>";
-                    echo "<table class='min-w-full text-sm text-left border border-gray-700 rounded-lg'>";
+        while ($tableRow = mysqli_fetch_array($tables)) {
+            $tableName = $tableRow[0];
+            ?>
 
-                    //clumn names
-                    echo "<thead class='bg-gray-800'>";
-                    echo "<tr>";
+            <div class='bg-black mt-8 w-full rounded-xl shadow-lg p-6'>
+                <h3 class='text-xl font-bold mb-4 border-b border-gray-700 pb-2'>Table: <?php echo $tableName ?></h3>
+                <?php
+                $allData = mysqli_query($connection, "SELECT * FROM `$tableName`");
+                ?>
 
-                    $columnName = mysqli_fetch_fields($allData);
-                    foreach ($columnName as $column) {
-                        echo "<th class='px-4 py-2 border border-gray-700'>" . $column->name . "</th>";
-                    }
+                <div class='overflow-x-auto'>
+                    <table class='min-w-full text-sm text-left border border-gray-700 rounded-lg'>
 
-                    echo "</tr>";
-                    echo "</thead>";
 
-                    //table rows
-                    echo "<tbody>";
-                    while ($row = mysqli_fetch_assoc($allData)) {
-                        echo "<tr class='hover:bg-gray-700'>";
-                        foreach ($row as $key => $value) {
-                            if ($key === "image" && !empty($value)) {
-                                $base64 = base64_encode($value);
-                                echo "<td class='px-4 py-2 border border-gray-700'>
+                        <thead class='bg-gray-800'>
+                            <tr>
+
+                                <?php
+                                $columnName = mysqli_fetch_fields($allData);
+                                foreach ($columnName as $column) {
+                                    ?>
+                                    <th class='px-4 py-2 border border-gray-700'> <?php echo $column->name ?></th>
+                                <?php } ?>
+
+                                <th class='px-4 py-2 border border-gray-700'>Action</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            while ($row = mysqli_fetch_assoc($allData)) { ?>
+                                <tr class='hover:bg-gray-900 transition-colors duration-300'>
+                                    <?php
+                                    foreach ($row as $key => $value) {
+                                        if ($key === "image" && !empty($value)) {
+                                            $base64 = base64_encode($value);
+                                            echo "<td class='px-4 py-2 border border-gray-700'>
                                          <img src='data:image/jpeg;base64,$base64' width='80' class='rounded-md shadow-sm'>
                                        </td>";
-                            } else {
-                                echo "<td class='px-4 py-2 border border-gray-700'>" . htmlspecialchars($value) . "</td>";
-                            }
-                        }
+                                        } else {
+                                            echo "<td class='px-4 py-2 border border-gray-700'>" . htmlspecialchars($value) . "</td>";
+                                        }
+                                    }
+                                    ?>
+
+                                    <td class='px-4 py-2 border border-gray-700'>
+                                        <form method='POST' class='inline'>
+                                            <input type='hidden' name='username' value=<?php echo $username ?>>
+                                            <input type='hidden' name='pass' value=<?php echo $password ?>>
+                                            <input type='hidden' name='table' value=<?php echo $tableName ?>>
+                                            <input type='hidden' name='id' value=<?php echo $row['id'] ?>>
+                                            <input type='hidden' name='action' value='delete'>
+                                            <button type='submit'
+                                                class='bg-red-600 hover:bg-red-700 px-3 py-1 rounded-lg text-white text-sm cursor-pointer'>
+                                                Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
 
+            <!-- Add Row Form -->
+            <h4 class='text-lg font-bold mt-6 mb-4 text-white'>Add new row to <?php echo $tableName ?></h4>
+            <form method='POST' enctype="multipart/form-data" class='add flex gap-3 flex-wrap'>
+                <?php
 
-                        echo "<td class='px-4 py-2 border border-gray-700'>
-                                <form method='POST' class='inline'>
-                                    <input type='hidden' name='username' value='$username'>
-                                    <input type='hidden' name='pass' value='$password'>
-                                    <input type='hidden' name='table' value='$tableName'>
-                                    <input type='hidden' name='id' value='" . $row['id'] . "'>
-                                    <input type='hidden' name='action' value='delete'>
-                                    <button type='submit' class='bg-red-600 hover:bg-red-700 px-3 py-1 rounded-lg text-white text-sm cursor-pointer'>
-                                        Delete
-                                    </button>
-                                </form>
-                              </td>";
-
-                        echo "</tr>";
-                    }
-
-                    echo "</tbody>";
-
-                    echo "</table>";
-                    echo "</div>";
-                    echo "</div>";
-        
+                foreach ($columnName as $field) {
+                    if ($field->name === "id")
+                        continue;
                     ?>
+                    <div>
+                        <label class='block text-sm mb-1 text-white'><?php echo $field->name ?></label>
 
-                    <h4 class='text-lg font-bold mt-1 mb-4 text-white'>Add new row to <?php echo $tableName ?></h4>
-                    <form method='POST' class='add flex gap-3'>
-                        <?php
-                        foreach ($columnName as $field) {
-                            if ($field->name === "id")
-                                continue;
-                            ?>
-                            <div>
-                                <label class='block text-sm mb-1 text-white'><?php echo $field->name ?></label>
-                                <input type='text' name='<?php echo $field->name ?>'
-                                    class='w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none'>
-                            </div>
+                        <?php if ($field->name === "image") { ?>
+                            <!-- File input for images -->
+                            <input type="file" name="<?php echo $field->name ?>" accept="image/*"
+                                class="w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                        <?php } else { ?>
+                            <!-- Default text input -->
+                            <input type="text" name="<?php echo $field->name ?>"
+                                class="w-full px-3 py-2 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                         <?php } ?>
+                    </div>
+                <?php } ?>
 
-                        <input type='hidden' name='username' value='<?php echo $username ?>'>
-                        <input type='hidden' name='pass' value='<?php echo $password ?>'>
-                        <input type='hidden' name='table' value='<?php echo $tableName ?>'>
-                        <input type='hidden' name='action' value='create'>
+                <input type='hidden' name='username' value='<?php echo $username ?>'>
+                <input type='hidden' name='pass' value='<?php echo $password ?>'>
+                <input type='hidden' name='table' value='<?php echo $tableName ?>'>
+                <input type='hidden' name='action' value='create'>
 
-                        <button type='submit'
-                            class='bg-indigo-600 hover:bg-indigo-700 px-4 py-1 rounded-lg text-white font-semibold cursor-pointer'>
-                            Create
-                        </button>
-                    </form>
-                    <?php
-                }
+                <button type='submit'
+                    class='bg-indigo-600 hover:bg-indigo-700 px-4 py-1 rounded-lg text-white font-semibold cursor-pointer'>
+                    Create
+                </button>
+            </form>
 
+            <?php
+        }
 
+        ?>
 
+        <?php
+        // Handle delete action
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
+            $table = $_POST['table'];
+            $id = $_POST['id'];
+            $query = "DELETE FROM `$table` WHERE id = $id";
+            if (mysqli_query($connection, $query)) {
+                echo "<p class='text-green-500 mt-4'>From $table Row with ID $id deleted successfully from <b>$table</b></p>";
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
+            } else {
+                echo "<p class='text-red-500 mt-4'>❌ Error: " . mysqli_error($connection) . "</p>";
             }
         }
         ?>
+
+
+
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['action'] === "create") {
+            $table = $_POST['table'];
+
+            // ✅ Only run insert for this table
+            if (!empty($table)) {
+                // Fetch columns for the submitted table
+                $result = mysqli_query($connection, "SHOW COLUMNS FROM `$table`");
+                $columns = [];
+                $values = [];
+
+                while ($col = mysqli_fetch_assoc($result)) {
+                    $colName = $col['Field'];
+                    if ($colName === "id")
+                        continue; // Skip auto id
+        
+                    if ($colName === "image") {
+                        // Handle image upload
+                        if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
+                            $imageData = file_get_contents($_FILES['image']['tmp_name']);
+                            $imageData = mysqli_real_escape_string($connection, $imageData);
+                            $columns[] = "`$colName`";
+                            $values[] = "'$imageData'";
+                        }
+                    } else {
+                        if (isset($_POST[$colName])) {
+                            $val = mysqli_real_escape_string($connection, $_POST[$colName]);
+                            $columns[] = "`$colName`";
+                            $values[] = "'$val'";
+                        }
+                    }
+                }
+
+                if (!empty($columns)) {
+                    $sql = "INSERT INTO `$table` (" . implode(",", $columns) . ") VALUES (" . implode(",", $values) . ")";
+                    if (mysqli_query($connection, $sql)) {
+                        echo "<p class='text-green-500 mt-4'>✅ New row added successfully in <b>$table</b></p>";
+                        header("Location: " . $_SERVER['PHP_SELF']);
+                        exit();
+                    } else {
+                        echo "<p class='text-red-500 mt-4'>❌ Error: " . mysqli_error($connection) . "</p>";
+                    }
+                }
+            }
+        }
+        ?>
+
 
 
     </div>

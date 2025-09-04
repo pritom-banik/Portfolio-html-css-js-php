@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-//  fetchDate();
+ fetchDate();
 });
 
 //=======================================================
@@ -50,29 +50,14 @@ function renderPosts(containerId, posts, extension) {
   const container = document.getElementById(containerId);
   container.innerHTML = ""; 
 
-  if (extension === "json") {
-    posts.forEach((post) => {
-      //console.log(post);
-      const postHTML = `
-      <div class="post">
-  <img src="${post.image}" alt="Image 1" class="image" />
-  <h1 class="heading">${post.title}</h1>
-  <p class="description">${post.description}</p>
-  <p class="duration">${post.duration}</p>
-</div>
-    `;
-      container.insertAdjacentHTML("beforeend", postHTML);
-    });
-  } else {
     container.innerHTML = posts;
-  }
+    console.log(posts);
+  
 }
 
 //===========================================
 
 const files = [
-  ["json", "js/all-achievement.json", "all-achievement"],
-  ["json", "js/all-education.json", "all-education"],
   ["txt", "js/all-coding-skill.txt", "all-coding-skill"],
   ["txt", "js/all-github-repo.txt", "all-github-repo"],
   ["txt", "js/all-interest.txt", "all-interest"],

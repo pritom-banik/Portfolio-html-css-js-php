@@ -227,7 +227,7 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   padding: 1rem;
   border-radius: 15px;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; 
 }
 
 
@@ -237,35 +237,35 @@ body {
   background-color: black;          
   border: 1px solid white;          
   border-radius: 0.5rem;            
-  padding: 1rem;                    
+  padding: 1rem; 
+  margin-bottom: 10px;                  
 }
 
 .image {
-  width: 100%;                      /* w-full */
-  border-radius: 0.5rem;            /* rounded-lg (8px) */
-  margin: 1rem 0;                   /* my-4 (16px top/bottom) */
+  width: 100%;                      
+  border-radius: 0.5rem;            
+  margin: 1rem 0;                   
 }
 
 .heading {
-  color: white;                     /* text-white */
-  font-size: 1.25rem;               /* text-xl */
-  font-weight: bold;                /* font-bold */
-  margin-bottom: 0.5rem;            /* mb-2 (8px) */
+  color: white;                     
+  font-size: 1.25rem;               
+  font-weight: bold;                
+  margin-bottom: 0.5rem;            
 }
 
 .description {
-  color: #d1d5db;                   /* text-gray-300 */
-  font-size: 1rem;                  /* text-base (16px) */
-  margin-bottom: 1rem;              /* mb-4 (16px) */
+  color: #d1d5db;                   
+  font-size: 1rem;                  
+  margin-bottom: 1rem;              
 }
 
 .duration {
-  color: white;                     /* text-white */
-  font-size: 1.125rem;              /* text-lg (18px) */
-  font-weight: 600;                 /* font-semibold */
-  margin-bottom: 0.5rem;            /* mb-2 (8px) */
+  color: white;                     
+  font-size: 1.125rem;              
+  font-weight: 600;                 
+  margin-bottom: 0.5rem;            
 }
-
 
 
 .contact-form {

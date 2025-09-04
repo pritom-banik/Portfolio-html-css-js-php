@@ -172,10 +172,11 @@
 
          <!-- =================================================================== -->
 
-        <div class="post">
-          <?php
+         <?php
           while ($row = mysqli_fetch_assoc($result)) {
           ?>
+
+        <div class="post">
             <p class="date"><?php echo $row['post_date'] ?></p>
             <img
               src="data:image/jpeg;base64,<?php echo base64_encode($row['image']); ?>"
