@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
     $table = $_POST['table'];
     $id = $_POST['id'];
     $query = "DELETE FROM `$table` WHERE id = $id";
-    
+
     if (mysqli_query($connection, $query)) {
         $_SESSION['message'] = [
             'type' => 'success',
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
             'text' => "Error: " . mysqli_error($connection)
         ];
     }
-    
+
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
 
         if (!empty($columns)) {
             $sql = "INSERT INTO `$table` (" . implode(",", $columns) . ") VALUES (" . implode(",", $values) . ")";
-            
+
             if (mysqli_query($connection, $sql)) {
                 $_SESSION['message'] = [
                     'type' => 'success',
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
                     'text' => "Error: " . mysqli_error($connection)
                 ];
             }
-            
+
             header("Location: " . $_SERVER['PHP_SELF']);
             exit();
         }
@@ -92,9 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
 <body class="bg-[rgb(36,36,36)] flex flex-col items-center justify-center text-white font-xl mb-4">
 
     <div class="response flex flex-col items-center mt-6 w-full max-w-4xl px-4">
-        
+
         <?php
-        
+
         if (isset($_SESSION['message'])) {
             $type = $_SESSION['message']['type'] === 'success' ? 'text-green-500' : 'text-red-500';
             $icon = $_SESSION['message']['type'] === 'success' ? '✅' : '❌';
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
             unset($_SESSION['message']);
         }
 
-        
+
         $tables = mysqli_query($connection, "SHOW TABLES FROM pritom_portfolio");
 
         while ($tableRow = mysqli_fetch_array($tables)) {
@@ -201,6 +201,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
                 <input type='hidden' name='table' value='<?php echo $tableName ?>'>
                 <input type='hidden' name='action' value='create'>
 
+                <button type='submit'
+                    class='bg-indigo-600 hover:bg-indigo-700 px-4 py-1 rounded-lg text-white font-semibold cursor-pointer'>
+                    Insert
+                </button>
+
             </form>
 
 
@@ -210,15 +215,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['action']) && $_POST['
 
     </div>
 
-     <button id="myButton" class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition cursor-pointer">
-    Logout
-  </button>
-  <script>
-    button=document.getElementById("myButton");
-    button.addEventListener('click',()=>{
-        window.location.href = "loginform.php";
-    });
-  </script>
+    <button id="myButton" class="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition cursor-pointer">
+        Logout
+    </button>
+    <script>
+        button = document.getElementById("myButton");
+        button.addEventListener('click', () => {
+            window.location.href = "loginform.php";
+        });
+    </script>
 
 </body>
 
