@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && $_POST['action'] === "delete") {
         $_SESSION['message'] = [
             'type' => 'success',
             'text' => "Row with ID $id deleted successfully from $table"
-        ];
+        ]; 
     } else {
         $_SESSION['message'] = [
             'type' => 'error',

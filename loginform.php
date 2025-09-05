@@ -7,7 +7,7 @@
         $username = $_POST["username"];
         $password = $_POST["pass"];
 
-        if ($username == "admin" && $password == "1234") {
+        if ($username == "admin" && $password == "1234") { 
             setcookie("loggedin","yes",time()+600);
             header("Location: settings.php");
             exit();
